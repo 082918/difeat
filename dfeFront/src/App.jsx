@@ -1,4 +1,5 @@
 import { useState } from "react";
+import KakaoMap from "./comp/Map";
 import "./App.css";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <div>
         <p> 테스트 </p>
+        <KakaoMap />
       </div>
     </>
   );
