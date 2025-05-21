@@ -1,35 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createElement } from "react";
+import "./Map.css";
 
 function KakaoMap() {
   useEffect(() => {
-    const kakaoMapScript = document.createElement("script");
-    kakaoMapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${
+    const mapScript = document.createElement("script");
+    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${
       import.meta.env.VITE_KAKAO_MAP_KEY
-    }&autoload=false`;
-    kakaoMapScript.async = true;
+    }&autoload=false;`;
+    mapScript.async = true;
 
-    kakaoMapScript.onload = () => {
+    mapScript.onload = () => {
       window.kakao.maps.load(() => {
         const container = document.getElementById("map");
         const options = {
           center: new window.kakao.maps.LatLng(37.5665, 126.978),
           level: 3,
         };
-        new window.kakao.maps.Map(container, options); // 여기 반드시 new!
+        new window.kakao.maps.Map(container, options);
       });
     };
 
-    document.head.appendChild(kakaoMapScript);
+    document.head.appendChild(mapScript);
   }, []);
 
   return (
-    <div
-      id="map"
-      style={{
-        width: "400px",
-        height: "400px",
-      }}
-    />
+    <>
+      <div id="map"></div>
+    </>
   );
 }
 
